@@ -14,6 +14,8 @@ builder.Services.AddDbContext<SimuQuestDbContext>(options =>
     options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<IExamRepository, ExamRepository>();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+builder.Services.AddScoped<IOptionRepository, OptionRepository>();
 
 
 builder.Services.AddControllers();

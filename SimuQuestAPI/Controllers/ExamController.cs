@@ -24,7 +24,7 @@ namespace SimuQuestAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ExamDTO>> Get(int id)
+        public async Task<ActionResult<ExamDTO>> GetById(int id)
         {
             var exam = await _examRepository.GetById(id);
             return Ok(exam);
