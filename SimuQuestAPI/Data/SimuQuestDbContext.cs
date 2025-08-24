@@ -10,7 +10,7 @@ namespace SimuQuestAPI.Data
         public DbSet<Exam> Exams { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Option> Options { get; set; }
-        //public DbSet<SimuladoResult> SimuladoResults { get; set; }
+        public DbSet<SimulatedResult> SimulatedResults { get; set; }
         //public DbSet<AnsweredQuestion> QuestoesRespondidas { get; set; }
         //public DbSet<SelectedOption> AlternativasRespondidas { get; set; }
     }

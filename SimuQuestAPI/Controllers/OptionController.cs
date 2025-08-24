@@ -55,7 +55,7 @@ namespace SimuQuestAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<OptionDTO>> Post([FromBody] OptionDTO optionDTO)
+        public async Task<ActionResult> Post([FromBody] OptionDTO optionDTO)
         {
             var option = new Option
             {

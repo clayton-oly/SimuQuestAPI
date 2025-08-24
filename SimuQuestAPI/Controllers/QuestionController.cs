@@ -2,7 +2,6 @@
 using SimuQuestAPI.DTOs;
 using SimuQuestAPI.Interfaces;
 using SimuQuestAPI.Models;
-using System.Linq;
 
 namespace SimuQuestAPI.Controllers
 {
@@ -56,7 +55,7 @@ namespace SimuQuestAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<QuestionDTO>> Post([FromBody] QuestionDTO questionDTO)
+        public async Task<ActionResult> Post([FromBody] QuestionDTO questionDTO)
         {
             var question = new Question
             {
