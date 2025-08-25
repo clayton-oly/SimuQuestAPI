@@ -13,10 +13,12 @@ var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
 builder.Services.AddDbContext<SimuQuestDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-builder.Services.AddScoped<IExamRepository, ExamRepository>();
+builder.Services.AddScoped<ISimulatedExamRepository, SimulatedExamRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IOptionRepository, OptionRepository>();
 builder.Services.AddScoped<ISimulatedResultRepository, SimulatedResultRepository>();
+builder.Services.AddScoped<ISelectedOptionRepository, SelectedOptionRepository>();
+builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
 
 
 builder.Services.AddControllers();
