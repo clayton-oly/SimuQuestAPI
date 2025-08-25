@@ -20,7 +20,7 @@ namespace SimuQuestAPI.Repositories
         }
         public async Task<IEnumerable<SimulatedExam>> GetAll()
         {
-            return await _context.SimulatedExams.ToListAsync();
+            return await _context.SimulatedExams.Include(s => s.Questions).ToListAsync();
         }
 
         public async Task<SimulatedExam> GetById(int id)

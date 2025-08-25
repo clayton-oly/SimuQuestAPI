@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimuQuestAPI.DTOs;
 using SimuQuestAPI.Interfaces;
-using SimuQuestAPI.Models;
 
 namespace SimuQuestAPI.Controllers
 {
@@ -17,21 +16,44 @@ namespace SimuQuestAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DTOs.SimulatedExamDTO>>> GetAll()
+        public async Task<ActionResult<IEnumerable<SimulatedExamDTO>>> GetAll()
         {
             var exams = await _examRepository.GetAll();
-            return Ok(exams);
+
+            var examDTOs = exams
+              .Select(s => new SimulatedExamDTO
+              {
+                  Descricao = s.Descricao,
+                  Nome = s.Nome,
+                  Id = s.Id,
+
+                  Questions = s.Questions.Select(q => new QuestionDTO
+                  {
+                      Id = q.Id,
+                      Texto = q.Statement,
+                  }).ToList()
+              }).ToList();
+
+            return Ok(examDTOs);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<DTOs.SimulatedExamDTO>> GetById(int id)
+        public async Task<ActionResult<SimulatedExamDTO>> GetById(int id)
         {
             var exam = await _examRepository.GetById(id);
-            return Ok(exam);
+
+            var examDTO = new SimulatedExamDTO
+            {
+                Id = exam.Id,
+                Nome = exam.Nome,
+                Descricao = exam.Descricao,
+            };
+
+            return Ok(examDTO);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] DTOs.SimulatedExamDTO examDTO)
+        public async Task<IActionResult> Post([FromBody] SimulatedExamDTO examDTO)
         {
             var exam = new Models.SimulatedExam
             {
@@ -41,11 +63,11 @@ namespace SimuQuestAPI.Controllers
             };
 
             await _examRepository.Add(exam);
-            return Ok();
+            return Ok(examDTO);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] DTOs.SimulatedExamDTO examDTO)
+        public async Task<IActionResult> Put(int id, [FromBody] SimulatedExamDTO examDTO)
         {
             var exam = new Models.SimulatedExam
             {
