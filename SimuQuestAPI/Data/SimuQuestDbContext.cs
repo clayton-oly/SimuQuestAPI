@@ -7,11 +7,11 @@ namespace SimuQuestAPI.Data
     {
         public SimuQuestDbContext(DbContextOptions<SimuQuestDbContext> options) : base(options) { }
 
-        public DbSet<Exam> Exams { get; set; }
+        public DbSet<SimulatedExam> SimulatedExams { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<SimulatedResult> SimulatedResults { get; set; }
-        //public DbSet<AnsweredQuestion> QuestoesRespondidas { get; set; }
-        //public DbSet<SelectedOption> AlternativasRespondidas { get; set; }
+        public DbSet<UserAnswer> UserAnswers { get; set; }
+        public DbSet<SelectedOption> SelectedOptions { get; set; }
     }
 }

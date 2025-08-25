@@ -25,9 +25,9 @@ namespace SimuQuestAPI.Controllers
                 .Select(s => new SimulatedResultDTO
                 {
                     Id = s.Id,
-                    ExamId = s.ExamId,
+                    ExamId = s.SimulatedExamId,
                     Pontuacao = s.Pontuacao,
-                    NomeExam = s.Exam.Nome
+                    NomeExam = s.SimulatedExam.Nome
                 });
 
             return Ok(simulatedResultsDTO);
@@ -41,9 +41,9 @@ namespace SimuQuestAPI.Controllers
             var simulatedResultDTO = new SimulatedResultDTO
             {
                 Id = simulatedResult.Id,
-                ExamId = simulatedResult.ExamId,
+                ExamId = simulatedResult.SimulatedExamId,
                 Pontuacao = simulatedResult.Pontuacao,
-                NomeExam = simulatedResult.Exam.Nome
+                NomeExam = simulatedResult.SimulatedExam.Nome
             };
 
             return Ok(simulatedResultDTO);
@@ -55,7 +55,7 @@ namespace SimuQuestAPI.Controllers
             var simulatedResult = new SimulatedResult
             {
                 Id = simulatedResultDTO.Id,
-                ExamId = simulatedResultDTO.ExamId,
+                SimulatedExamId = simulatedResultDTO.ExamId,
                 Pontuacao = simulatedResultDTO.Pontuacao,
             };
 
@@ -70,7 +70,7 @@ namespace SimuQuestAPI.Controllers
             var simulatedResult = new SimulatedResult
             {
                 Id = simulatedResultDTO.Id,
-                ExamId = simulatedResultDTO.ExamId,
+                SimulatedExamId = simulatedResultDTO.ExamId,
                 Pontuacao = simulatedResultDTO.Pontuacao
             };
 

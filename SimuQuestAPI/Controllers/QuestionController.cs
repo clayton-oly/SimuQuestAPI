@@ -26,11 +26,11 @@ namespace SimuQuestAPI.Controllers
                 .Select(q => new QuestionDTO
                 {
                     Id = q.Id,
-                    Texto = q.Texto,
+                    Texto = q.Statement,
                     Explicacao = q.Explicacao,
                     Ordem = q.Ordem,
-                    ExamId = q.ExamId,
-                    NomeExame = q.Exam.Nome
+                    ExamId = q.SimulatedExamId,
+                    NomeExame = q.SimulatedExam.Nome
                 });
 
             return Ok(questionsDTO);
@@ -44,11 +44,11 @@ namespace SimuQuestAPI.Controllers
             var questionDTO = new QuestionDTO
             {
                 Id = question.Id,
-                Texto = question.Texto,
+                Texto = question.Statement,
                 Explicacao = question.Explicacao,
                 Ordem = question.Ordem,
-                ExamId = question.ExamId,
-                NomeExame = question.Exam.Nome
+                ExamId = question.SimulatedExamId,
+                NomeExame = question.SimulatedExam.Nome
             };
 
             return Ok(questionDTO);
@@ -60,10 +60,10 @@ namespace SimuQuestAPI.Controllers
             var question = new Question
             {
                 Id = questionDTO.Id,
-                Texto = questionDTO.Texto,
+                Statement = questionDTO.Texto,
                 Explicacao = questionDTO.Explicacao,
                 Ordem = questionDTO.Ordem,
-                ExamId = questionDTO.ExamId
+                SimulatedExamId = questionDTO.ExamId
             };
 
             await _questionRepository.Add(question);
@@ -77,10 +77,10 @@ namespace SimuQuestAPI.Controllers
             var question = new Question
             {
                 Id = questionDTO.Id,
-                Texto = questionDTO.Texto,
+                Statement = questionDTO.Texto,
                 Explicacao = questionDTO.Explicacao,
                 Ordem = questionDTO.Ordem,
-                ExamId = questionDTO.ExamId
+                SimulatedExamId = questionDTO.ExamId
             };
 
             await _questionRepository.Update(question);

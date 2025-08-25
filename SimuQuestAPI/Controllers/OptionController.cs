@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Options;
 using SimuQuestAPI.DTOs;
 using SimuQuestAPI.Interfaces;
 using SimuQuestAPI.Models;
@@ -29,7 +28,7 @@ namespace SimuQuestAPI.Controllers
                 {
                     Id = o.Id,
                     Texto = o.Texto,
-                    Correta = o.Correta,
+                    Correta = o.IsCorrect,
                     Ordem = o.Ordem,
                     QuestionId = o.QuestionId
                 });
@@ -46,7 +45,7 @@ namespace SimuQuestAPI.Controllers
             {
                 Id = option.Id,
                 Texto = option.Texto,
-                Correta = option.Correta,
+                Correta = option.IsCorrect,
                 Ordem = option.Ordem,
                 QuestionId = option.QuestionId
             };
@@ -61,7 +60,7 @@ namespace SimuQuestAPI.Controllers
             {
                 Id = optionDTO.Id,
                 Texto = optionDTO.Texto,
-                Correta = optionDTO.Correta,
+                IsCorrect = optionDTO.Correta,
                 Ordem = optionDTO.Ordem,
                 QuestionId = optionDTO.QuestionId
             };
@@ -78,7 +77,7 @@ namespace SimuQuestAPI.Controllers
             {
                 Id = optionDTO.Id,
                 Texto = optionDTO.Texto,
-                Correta = optionDTO.Correta,
+                IsCorrect = optionDTO.Correta,
                 Ordem = optionDTO.Ordem,
                 QuestionId = optionDTO.QuestionId
             };
