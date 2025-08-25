@@ -1,6 +1,4 @@
-﻿using SimuQuestAPI.Models;
-
-namespace SimuQuestAPI.DTOs
+﻿namespace SimuQuestAPI.DTOs
 {
     public class OptionDTO
     {

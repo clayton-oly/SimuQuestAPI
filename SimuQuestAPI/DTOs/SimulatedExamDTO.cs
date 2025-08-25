@@ -1,8 +1,6 @@
-﻿using SimuQuestAPI.Models;
-
-namespace SimuQuestAPI.DTOs
+﻿namespace SimuQuestAPI.DTOs
 {
-    public class ExamDTO
+    public class SimulatedExamDTO
     {
         public int Id { get; set; }
         public string Nome { get; set; } = string.Empty;

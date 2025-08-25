@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public int ExamId { get; set; }
         public string NomeExam { get; set; }
-        public int Pontuacao { get; set; }
+        public decimal Pontuacao { get; set; }
     }
 }
