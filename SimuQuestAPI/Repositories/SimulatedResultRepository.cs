@@ -22,12 +22,12 @@ namespace SimuQuestAPI.Repositories
 
         public async Task<IEnumerable<SimulatedResult>> GetAll()
         {
-            return await _context.SimulatedResults.Include(s => s.Exam).ToListAsync();
+            return await _context.SimulatedResults.Include(s => s.SimulatedExam).ToListAsync();
         }
 
         public async Task<SimulatedResult> GetById(int id)
         {
-            return await _context.SimulatedResults.Include(s => s.Exam).FirstOrDefaultAsync(s => s.Id == id);
+            return await _context.SimulatedResults.Include(s => s.SimulatedExam).FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task Update(SimulatedResult simulatedResult)

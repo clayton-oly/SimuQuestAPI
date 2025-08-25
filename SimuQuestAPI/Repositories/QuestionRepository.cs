@@ -20,12 +20,12 @@ namespace SimuQuestAPI.Repositories
         }
         public async Task<IEnumerable<Question>> GetAll()
         {
-            return await _context.Questions.Include(q => q.Exam).ToListAsync();
+            return await _context.Questions.Include(q => q.SimulatedExam).ToListAsync();
         }
 
         public async Task<Question> GetById(int id)
         {
-            return await _context.Questions.Include(q => q.Exam).FirstOrDefaultAsync(q => q.Id == id);
+            return await _context.Questions.Include(q => q.SimulatedExam).FirstOrDefaultAsync(q => q.Id == id);
         }
 
         public async Task Update(Question question)
@@ -36,11 +36,11 @@ namespace SimuQuestAPI.Repositories
 
         public async Task Delete(int id)
         {
-            var question = await _context.Exams.FirstOrDefaultAsync(e => e.Id == id);
+            var question = await _context.SimulatedExams.FirstOrDefaultAsync(e => e.Id == id);
 
             if (question != null)
             {
-                _context.Exams.Remove(question);
+                _context.SimulatedExams.Remove(question);
                 await _context.SaveChangesAsync();
             }
 
