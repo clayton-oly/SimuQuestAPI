@@ -6,12 +6,12 @@ namespace SimuQuestAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public int ExamId { get; set; }
-        public Exam Exam { get; set; }
+        public int SimulatedExamId { get; set; }
+        public SimulatedExam SimulatedExam { get; set; }
 
-        //public string UsuarioId { get; set; } // Se tiver autenticação
+        //public string UsuarioId { get; set; }
         public DateTime DataConclusao { get; set; } = DateTime.UtcNow;
-        public int Pontuacao { get; set; } // Ex: 10/15
-        public ICollection<AnsweredQuestion> AnsweredQuestions { get; set; } = new List<AnsweredQuestion>();
+        public decimal Pontuacao { get; set; }
+        public ICollection<UserAnswer> AnsweredQuestions { get; set; } = new List<UserAnswer>();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SimuQuestAPI.Models
 {
-    public class Exam
+    public class SimulatedExam
     {
         [Key]
         public int Id { get; set; }

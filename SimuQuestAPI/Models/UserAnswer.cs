@@ -1,7 +1,10 @@
-﻿namespace SimuQuestAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SimuQuestAPI.Models
 {
-    public class AnsweredQuestion
+    public class UserAnswer
     {
+        [Key]
         public int Id { get; set; }
 
         public int QuestionId { get; set; }
@@ -12,6 +15,6 @@
         public SimulatedResult SimulatedResult { get; set; }
 
         public ICollection<SelectedOption> SelectedOptions { get; set; } = new List<SelectedOption>();
-        public bool Acertou { get; set; } 
+        public bool IsCorrect { get; set; } 
     }
 }

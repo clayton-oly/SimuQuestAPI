@@ -6,12 +6,12 @@ namespace SimuQuestAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Texto { get; set; } = string.Empty;
+        public string Statement { get; set; } = string.Empty;
         public string? Explicacao { get; set; }
         public int Ordem { get; set; }
 
-        public int ExamId { get; set; }
-        public Exam Exam { get; set; }
+        public int SimulatedExamId { get; set; }
+        public SimulatedExam SimulatedExam { get; set; }
 
         public ICollection<Option> Options { get; set; } = new List<Option>();
     }

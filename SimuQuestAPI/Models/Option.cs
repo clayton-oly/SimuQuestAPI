@@ -7,7 +7,7 @@ namespace SimuQuestAPI.Models
         [Key]
         public int Id { get; set; }
         public string Texto { get; set; } = string.Empty;
-        public bool Correta { get; set; }
+        public bool IsCorrect { get; set; }
         public int Ordem { get; set; }
 
         public int QuestionId { get; set; }
