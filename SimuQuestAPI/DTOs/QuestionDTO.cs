@@ -8,6 +8,6 @@
         public int Ordem { get; set; }
 
         public int ExamId { get; set; }
-        public string NomeExame { get; set; }
+        public string? NomeExame { get; set; }
     }
 }

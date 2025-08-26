@@ -8,5 +8,6 @@
         public int Ordem { get; set; }
 
         public int QuestionId { get; set; }
+        public string Questao { get; set; }
     }
 }
