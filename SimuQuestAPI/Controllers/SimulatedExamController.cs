@@ -47,6 +47,12 @@ namespace SimuQuestAPI.Controllers
                 Id = exam.Id,
                 Nome = exam.Nome,
                 Descricao = exam.Descricao,
+                DataCriacao = exam.DataCriacao,
+                Questions = exam.Questions.Select(exam => new QuestionDTO
+                {
+                    Ordem = exam.Ordem,
+                    Texto   = exam.Statement,
+                }).ToList(),
             };
 
             return Ok(examDTO);

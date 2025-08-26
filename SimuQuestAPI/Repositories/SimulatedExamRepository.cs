@@ -25,7 +25,7 @@ namespace SimuQuestAPI.Repositories
 
         public async Task<SimulatedExam> GetById(int id)
         {
-            return await _context.SimulatedExams.FindAsync(id);
+            return await _context.SimulatedExams.Include(s => s.Questions).FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task Update(SimulatedExam exam)
