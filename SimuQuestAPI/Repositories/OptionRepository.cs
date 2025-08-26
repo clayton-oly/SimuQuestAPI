@@ -22,12 +22,12 @@ namespace SimuQuestAPI.Repositories
 
         public async Task<IEnumerable<Option>> GetAll()
         {
-            return await _context.Options.ToListAsync();
+            return await _context.Options.Include(o => o.Question).ToListAsync();
         }
 
         public async Task<Option> GetById(int id)
         {
-            return await _context.Options.FindAsync(id);
+            return await _context.Options.Include(o => o.Question).FirstOrDefaultAsync(o => o.Id == id);
         }
 
         public async Task Update(Option option)

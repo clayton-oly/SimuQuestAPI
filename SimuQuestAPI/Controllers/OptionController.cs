@@ -30,7 +30,8 @@ namespace SimuQuestAPI.Controllers
                     Texto = o.Texto,
                     Correta = o.IsCorrect,
                     Ordem = o.Ordem,
-                    QuestionId = o.QuestionId
+                    QuestionId = o.QuestionId,
+                    Questao = o.Question.Statement
                 });
 
             return Ok(optionsDTO);
