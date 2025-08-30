@@ -9,5 +9,7 @@
 
         public int ExamId { get; set; }
         public string? NomeExame { get; set; }
+
+        public ICollection<OptionDTO> Options { get; set; } = new List<OptionDTO>();
     }
 }
