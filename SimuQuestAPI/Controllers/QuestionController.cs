@@ -30,8 +30,17 @@ namespace SimuQuestAPI.Controllers
                     Explicacao = q.Explicacao,
                     Ordem = q.Ordem,
                     ExamId = q.SimulatedExamId,
-                    NomeExame = q.SimulatedExam.Nome
-                });
+                    NomeExame = q.SimulatedExam.Nome,
+                    Options = q.Options.Select(o => new OptionDTO
+                    {
+                        Correta = o.IsCorrect,
+                        Id = o.Id,
+                        Ordem = o.Ordem,
+                        Questao = o.Question.ToString(),
+                        QuestionId = o.QuestionId,
+                        Texto = o.Texto
+                    }).ToList()
+                }).ToList();
 
             return Ok(questionsDTO);
         }
@@ -43,12 +52,22 @@ namespace SimuQuestAPI.Controllers
 
             var questionDTO = new QuestionDTO
             {
+
                 Id = question.Id,
                 Texto = question.Statement,
                 Explicacao = question.Explicacao,
                 Ordem = question.Ordem,
                 ExamId = question.SimulatedExamId,
-                NomeExame = question.SimulatedExam.Nome
+                //NomeExame = question.SimulatedExam.Nome,
+                Options = question.Options.Select(o => new OptionDTO
+                {
+                    Correta = o.IsCorrect,
+                    Id = o.Id,
+                    Ordem = o.Ordem,
+                    Questao = o.Question.ToString(),
+                    QuestionId = o.QuestionId,
+                    Texto = o.Texto
+                }).ToList()
             };
 
             return Ok(questionDTO);
