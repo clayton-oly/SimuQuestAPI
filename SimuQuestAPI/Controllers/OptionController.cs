@@ -62,7 +62,7 @@ namespace SimuQuestAPI.Controllers
                 Id = optionDTO.Id,
                 Texto = optionDTO.Texto,
                 IsCorrect = optionDTO.Correta,
-                Ordem = optionDTO.Ordem,
+                //Ordem = optionDTO.Ordem,
                 QuestionId = optionDTO.QuestionId
             };
 
@@ -79,7 +79,7 @@ namespace SimuQuestAPI.Controllers
                 Id = optionDTO.Id,
                 Texto = optionDTO.Texto,
                 IsCorrect = optionDTO.Correta,
-                Ordem = optionDTO.Ordem,
+                //Ordem = optionDTO.Ordem,
                 QuestionId = optionDTO.QuestionId
             };
 

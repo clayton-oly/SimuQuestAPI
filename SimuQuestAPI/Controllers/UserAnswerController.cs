@@ -23,8 +23,6 @@ namespace SimuQuestAPI.Controllers
             var userAnswerDTO = userAnswer.
                 Select(u => new UserAnswerDTO
                 {
-                    SimulatedResultId = u.SimulatedResultId,
-                    Id = u.Id,
                     IsCorrect = u.IsCorrect,
                     QuestionId = u.QuestionId,
                 });
@@ -39,10 +37,8 @@ namespace SimuQuestAPI.Controllers
 
             var userAnswerDTO = new UserAnswerDTO
             {
-                Id = userAnswer.Id,
                 IsCorrect = userAnswer.IsCorrect,
                 QuestionId = userAnswer.QuestionId,
-                SimulatedResultId = userAnswer.SimulatedResultId,
             };
 
             return Ok(userAnswerDTO);
@@ -53,10 +49,8 @@ namespace SimuQuestAPI.Controllers
         {
             var userAnswer = new UserAnswer
             {
-                Id = userAnswerDTO.Id,
                 IsCorrect = userAnswerDTO.IsCorrect,
                 QuestionId = userAnswerDTO.QuestionId,
-                SimulatedResultId = userAnswerDTO.SimulatedResultId,
             };
 
             await _userAnswerRepository.Add(userAnswer);
@@ -68,10 +62,8 @@ namespace SimuQuestAPI.Controllers
         {
             var userAnswer = new UserAnswer
             {
-                Id = userAnswerDTO.Id,
                 IsCorrect = userAnswerDTO.IsCorrect,
                 QuestionId = userAnswerDTO.QuestionId,
-                SimulatedResultId = userAnswerDTO.SimulatedResultId,
             };
 
             await _userAnswerRepository.Update(userAnswer);

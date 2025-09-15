@@ -23,6 +23,16 @@ namespace SimuQuestAPI.Repositories
             return await _context.SimulatedExams.Include(s => s.Questions).ToListAsync();
         }
 
+        public async Task<IEnumerable<Question>> GetQuestoesAleatorias(int exameId, int quantidade)
+        {
+            return await _context.Questions
+                .Where(q => q.SimulatedExamId == exameId)   // Filtra pelo exame
+                .OrderBy(q => Guid.NewGuid())               // Embaralha aleatoriamente
+                .Take(quantidade)                           // Pega só a quantidade desejada
+                .Include(q => q.Options)                    // Inclui as opções
+                .ToListAsync();                             // Materializa a lista
+        }
+
         public async Task<SimulatedExam> GetById(int id)
         {
             return await _context.SimulatedExams.Include(s => s.Questions).ThenInclude(q => q.Options).FirstOrDefaultAsync(s => s.Id == id);

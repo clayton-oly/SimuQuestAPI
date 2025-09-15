@@ -30,7 +30,6 @@ namespace SimuQuestAPI.Controllers
                     Explicacao = q.Explicacao,
                     Ordem = q.Ordem,
                     ExamId = q.SimulatedExamId,
-                    NomeExame = q.SimulatedExam.Nome,
                     Options = q.Options.Select(o => new OptionDTO
                     {
                         Correta = o.IsCorrect,
@@ -87,6 +86,33 @@ namespace SimuQuestAPI.Controllers
 
             await _questionRepository.Add(question);
 
+            return Ok();
+        }
+
+        [HttpPost("{examId}/add-questions")]
+        public async Task<ActionResult> CreateQuestionsBatch(int examId, [FromBody] List<QuestionDTO> questionDTOs)
+        {
+            var questions = new List<Question>();
+            foreach (var qDto in questionDTOs)
+            {
+                var question = new Question
+                {
+                    Statement = qDto.Texto,
+                    Explicacao = qDto.Explicacao,
+                    SimulatedExamId = examId,
+                    Options = qDto.Options.Select(oDto => new Option
+                    {
+                        Texto = oDto.Texto,
+                        IsCorrect = oDto.Correta,
+                        QuestionId = qDto.Id
+                        //Ordem = oDto.Ordem
+                    }).ToList()
+                };
+
+                questions.Add(question);
+            }
+
+            await _questionRepository.CreateQuestionsBatch(examId, questions);
             return Ok();
         }
 

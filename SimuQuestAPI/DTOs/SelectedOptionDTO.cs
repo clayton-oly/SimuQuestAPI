@@ -2,10 +2,9 @@
 {
     public class SelectedOptionDTO
     {
-        public int Id { get; set; }
-
         public int OptionId { get; set; }
-
-        public int AnsweredQuestionId { get; set; }
+        public string OptionText { get; set; }
+        public bool IsCorrect { get; set; } // mostra se a opção era a correta
+        public bool WasChosen { get; set; } // mostra se o usuário escolheu
     }
 }

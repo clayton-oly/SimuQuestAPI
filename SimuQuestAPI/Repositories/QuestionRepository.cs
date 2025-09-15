@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SimuQuestAPI.Data;
+using SimuQuestAPI.DTOs;
 using SimuQuestAPI.Interfaces;
 using SimuQuestAPI.Models;
 
@@ -18,6 +20,24 @@ namespace SimuQuestAPI.Repositories
             await _context.Questions.AddAsync(question);
             await _context.SaveChangesAsync();
         }
+
+        public async Task CreateQuestionsBatch(int examId, List<Question> questions)
+        {
+            var exam = await _context.SimulatedExams.FindAsync(examId);
+
+            if (exam != null)
+            {
+                {
+                    foreach (var question in questions)
+                    {
+                        await _context.Questions.AddAsync(question);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+
+            }
+        }
+
         public async Task<IEnumerable<Question>> GetAll()
         {
             return await _context.Questions.Include(q => q.Options).ToListAsync();

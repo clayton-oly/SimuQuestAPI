@@ -36,8 +36,7 @@ namespace SimuQuestAPI.Controllers
         {
             var selectedOption = new SelectedOption
             {
-                Id = selectedOptionDTO.Id,
-                AnsweredQuestionId = selectedOptionDTO.AnsweredQuestionId,
+                Id = selectedOptionDTO.OptionId,
                 OptionId = selectedOptionDTO.OptionId,
             };
 
@@ -51,8 +50,7 @@ namespace SimuQuestAPI.Controllers
         {
             var selectedOption = new SelectedOption
             {
-                Id = selectedOptionDTO.Id,
-                AnsweredQuestionId = selectedOptionDTO.AnsweredQuestionId,
+                Id = selectedOptionDTO.OptionId,
                 OptionId = selectedOptionDTO.OptionId,
             };
 

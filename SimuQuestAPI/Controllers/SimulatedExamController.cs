@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimuQuestAPI.DTOs;
 using SimuQuestAPI.Interfaces;
+using SimuQuestAPI.Models;
 
 namespace SimuQuestAPI.Controllers
 {
@@ -50,9 +51,9 @@ namespace SimuQuestAPI.Controllers
                 DataCriacao = exam.DataCriacao,
                 Questions = exam.Questions.Select(q => new QuestionDTO
                 {
-                    Id= q.Id,
+                    Id = q.Id,
                     Ordem = q.Ordem,
-                    Texto   = q.Statement,
+                    Texto = q.Statement,
 
                     Options = q.Options.Select(o => new OptionDTO
                     {
@@ -62,10 +63,37 @@ namespace SimuQuestAPI.Controllers
                         Ordem = o.Ordem,
                     }).ToList(),
                 }).ToList(),
-                
+
             };
 
             return Ok(examDTO);
+        }
+
+        [HttpGet("{examId}/questoes-aleatorias")]
+        public async Task<ActionResult<IEnumerable<Question>>> GetQuestoesAleatorias(int examId, int quantidade)
+        {
+            var questions = await _examRepository.GetQuestoesAleatorias(examId, quantidade);
+
+            var questionsDTO = questions
+                .Select(q => new QuestionDTO
+                {
+                    Id = q.Id,
+                    Texto = q.Statement,
+                    Explicacao = q.Explicacao,
+                    Ordem = q.Ordem,
+                    ExamId = q.SimulatedExamId,
+                    Options = q.Options.Select(o => new OptionDTO
+                    {
+                        Correta = o.IsCorrect,
+                        Id = o.Id,
+                        Ordem = o.Ordem,
+                        Questao = o.Question.ToString(),
+                        QuestionId = o.QuestionId,
+                        Texto = o.Texto
+                    }).ToList()
+                }).ToList();
+
+            return Ok(questionsDTO);
         }
 
         [HttpPost]
