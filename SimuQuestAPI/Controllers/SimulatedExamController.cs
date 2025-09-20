@@ -26,6 +26,7 @@ namespace SimuQuestAPI.Controllers
               {
                   Descricao = s.Descricao,
                   Nome = s.Nome,
+                  Imagem = s.Imagem,
                   Id = s.Id,
 
                   Questions = s.Questions.Select(q => new QuestionDTO
@@ -104,6 +105,7 @@ namespace SimuQuestAPI.Controllers
                 Id = examDTO.Id,
                 Nome = examDTO.Nome,
                 Descricao = examDTO.Descricao,
+                Imagem = examDTO.Imagem,
             };
 
             await _examRepository.Add(exam);
@@ -118,6 +120,7 @@ namespace SimuQuestAPI.Controllers
                 Id = examDTO.Id,
                 Nome = examDTO.Nome,
                 Descricao = examDTO.Descricao,
+                Imagem = examDTO.Imagem,
             };
 
             await _examRepository.Update(exam);
