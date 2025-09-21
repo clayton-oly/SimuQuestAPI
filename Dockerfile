@@ -1,21 +1,40 @@
-# Estágio de construção
+# ================================
+# Build stage
+# ================================
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
 
-# Copiar apenas o arquivo csproj e restaurar dependências
-COPY *.csproj ./
+# Define o diretório de trabalho dentro do container
+WORKDIR /src
+
+# Copia a solução e os projetos
+COPY SimuQuestAPI.sln ./
+COPY SimuQuestAPI/*.csproj ./SimuQuestAPI/
+
+# Restaura dependências
 RUN dotnet restore
 
-# Copiar todo o resto e compilar o aplicativo
-COPY . ./
-RUN dotnet publish -c Release -o out
+# Copia todo o código do projeto
+COPY SimuQuestAPI/. ./SimuQuestAPI/
 
-# Estágio de execução
+# Build em Release
+WORKDIR /src/SimuQuestAPI
+RUN dotnet build -c Release -o /app/build
+
+# ================================
+# Publish stage
+# ================================
+FROM build AS publish
+RUN dotnet publish -c Release -o /app/publish
+
+# ================================
+# Runtime stage
+# ================================
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
+COPY --from=publish /app/publish .
 
-# Copiar apenas os arquivos necessários para executar o aplicativo
-COPY --from=build /app/out ./
+# Expondo a porta padrão
+EXPOSE 5000
 
-# Comando para iniciar o aplicativo
-CMD ["dotnet", "SimuQuestAPI.dll"]
+# Comando para rodar a aplicação
+ENTRYPOINT ["dotnet", "SimuQuestAPI.dll"]
