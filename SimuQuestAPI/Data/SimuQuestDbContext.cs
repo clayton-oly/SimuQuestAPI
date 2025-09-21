@@ -13,5 +13,6 @@ namespace SimuQuestAPI.Data
         public DbSet<SimulatedResult> SimulatedResults { get; set; }
         public DbSet<UserAnswer> UserAnswers { get; set; }
         public DbSet<SelectedOption> SelectedOptions { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

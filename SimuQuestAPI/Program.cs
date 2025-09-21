@@ -30,6 +30,7 @@ builder.Services.AddScoped<IOptionRepository, OptionRepository>();
 builder.Services.AddScoped<ISimulatedResultRepository, SimulatedResultRepository>();
 builder.Services.AddScoped<ISelectedOptionRepository, SelectedOptionRepository>();
 builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
 builder.Services.AddControllers();
